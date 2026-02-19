@@ -1,0 +1,121 @@
+' logging utility...
+
+'------------------------------------------------------------------------------
+' log levels
+'------------------------------------------------------------------------------
+const LOG_LEVEL_DEBUG = 0
+const LOG_LEVEL_INFO = 1
+const LOG_LEVEL_WARN = 2
+const LOG_LEVEL_ERROR = 3
+
+'------------------------------------------------------------------------------
+' logMessageDetails
+'------------------------------------------------------------------------------
+sub logMessageDetails(msg as dynamic)
+
+    messageInfo = type(msg).toStr()
+
+    if messageInfo = "roSGNodeEvent"
+        messageInfo = messageInfo + "::" + msg.getField()
+    end if
+
+    logDebug(messageInfo)
+
+end sub
+
+'------------------------------------------------------------------------------
+' logDebug (helper/wrapper)
+'------------------------------------------------------------------------------
+sub logDebug(message as string)
+    logger(LOG_LEVEL_DEBUG, message)
+end sub
+
+'------------------------------------------------------------------------------
+' logInfo (helper/wrapper)
+'------------------------------------------------------------------------------
+sub logInfo(message as string)
+    logger(LOG_LEVEL_INFO, message)
+end sub
+
+'------------------------------------------------------------------------------
+' logWarn (helper/wrapper)
+'------------------------------------------------------------------------------
+sub logWarn(message as string)
+    logger(LOG_LEVEL_WARN, message)
+end sub
+
+'------------------------------------------------------------------------------
+' logError (helper/wrapper)
+'------------------------------------------------------------------------------
+sub logError(message as string)
+    logger(LOG_LEVEL_ERROR, message)
+end sub
+
+'------------------------------------------------------------------------------
+' logger (does the actual work)
+'------------------------------------------------------------------------------
+sub logger(level as integer, message as string)
+
+    levelStr = getLevelString(level)
+    timestamp = getFormattedCurrentDateTime()
+
+    output = timestamp + " [" + levelStr + "] " + message
+
+    print output
+
+end sub
+
+'------------------------------------------------------------------------------
+' getLevelString
+'------------------------------------------------------------------------------
+function getLevelString(level as integer) as string
+
+    if level = LOG_LEVEL_DEBUG then return "DEBUG"
+    if level = LOG_LEVEL_INFO then return "INFO"
+    if level = LOG_LEVEL_WARN then return "WARN"
+    if level = LOG_LEVEL_ERROR then return "ERROR"
+
+    return "UNKNOWN"
+
+end function
+
+'------------------------------------------------------------------------------
+' getFormattedCurrentDateTime
+'------------------------------------------------------------------------------
+function getFormattedCurrentDateTime() as string
+    dt = CreateObject("roDateTime")
+
+    ' date parts
+    month = pad2(dt.GetMonth())
+    day = pad2(dt.GetDayOfMonth())
+
+    ' time parts
+    hour = pad2(dt.GetHours())
+    minute = pad2(dt.GetMinutes())
+    second = pad2(dt.GetSeconds())
+
+    ' milliseconds (approximate)
+    ms = Right("000" + GetMilliseconds().ToStr(), 3)
+
+    return month + "-" + day + " " + hour + ":" + minute + ":" + second + "." + ms
+end function
+
+'------------------------------------------------------------------------------
+' pad2
+'------------------------------------------------------------------------------
+function pad2(value as integer) as string
+    if value < 10
+        return "0" + value.ToStr()
+    else
+        return value.ToStr()
+    end if
+end function
+
+'------------------------------------------------------------------------------
+' getMilliseconds
+'------------------------------------------------------------------------------
+function getMilliseconds() as integer
+    ts = CreateObject("roTimespan")
+    ts.Mark()
+    return ts.TotalMilliseconds() mod 1000
+end function

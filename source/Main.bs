@@ -106,6 +106,8 @@ sub Main (args as dynamic) as void
     while true
         msg = wait(0, m.port)
 
+        logMessageDetails(msg)
+
         if type(msg) = "roSGScreenEvent" and msg.isScreenClosed()
             print "SCREEN CLOSED"
             return

@@ -2,6 +2,11 @@
 
 The intent of this document is to provide a "lay of the land" for how the Starfish Roku app code is constructed, the main entry points, the general conventions used, and common components. Think of it as your tour guide. Since this is a fork of the official Jellyfin Roku App repo, most of this will simply be documenting how that works, and then changes made to it. This document will also cover learnings on how Roku App development works.
 
+## Philosophical Approach
+The intent of Starfish is to improve the UX/UI of the Jellyfin Roku app, and not to otherwise affect implementation/functionality. This will allow for updating the fork to be synced with the source repo (jellyfin-roku) with less merging. There may come a time (if this mad experiment actually works out) where the goals of this project expand beyond just improving the UX/UI experience, but for now, that is the scope.
+
+So where a .bs file might need to be modified, whenever possible that code will be abstracted into a file that is only part of Starfish and not part of jellyfin-roku, and hopefully only needed to add a call to that abstracted function from an existing .bs file.
+
 ## Roku App Specifics
 
 ### Roku app development overview
