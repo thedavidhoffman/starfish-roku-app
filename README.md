@@ -1,8 +1,8 @@
-<p align="center"><img src="https://raw.githubusercontent.com/jellyfin/jellyfin-roku/master/images/channel-poster_fhd.png" style="border: 1px solid #eee; border-radius: 4px" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/thedavidhoffman/starfish-roku-app/master/images/splash-screen_hd.png" style="border: 1px solid #eee; border-radius: 4px" /></p>
 
-<h1 align="center">Jellyfin for Roku</h1>
+<h1 align="center">Starfish - An enhanced Roku app for Jellyfin</h1>
 <p align="center">This is a fork of the official <strong>Jellyfin</strong> Roku client.</p>
-<p align="center">THE INTENTION OF THIS FORK IS TO MAKE A BETTER LOOKING ROKU APP FOR JELLYFIN. NOTHING HAS BEEN UPDATED BEYOND FORKING THE MASTER BRANCH FROM THE OFFICIAL REPO. GITHUB REQUIRES FORKS TO BE PUBLIC REPOSITORIES. IF I ACTUALLY SUCCEED IN THIS ENDEAVOR THIS README WILL BE UPDATED. DATE OF THIS COMMENT: 2/18/2026.</p>
+<p align="center">THIS IS A VERY EARLY WORK IN PROGRESS.</p>
 <p align="center">Navigate your Jellyfin library and watch, listen, and view your media.</p>
 <p align="center">Cool features include song lyric support, trickplay images, media segment support, downloading subtitles direct from your Roku, and more.</p>
 <h2 align="center">Part of the <a href="https://jellyfin.org">Jellyfin Project</a></h2>
